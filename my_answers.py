@@ -26,9 +26,17 @@ def build_part1_RNN(window_size):
     pass
 
 
-### TODO: return the text input with only ascii lowercase and the punctuation given below included.
+### DONE: return the text input with only ascii lowercase and the punctuation given below included.
 def cleaned_text(text):
     punctuation = ['!', ',', '.', ':', ';', '?']
+    letters = set(map(chr, range(ord('a'), ord('z')+1))) #a-z
+
+    def is_valid(char):
+        return char in letters or char in punctuation or char == ' '
+
+    text = text.lower()
+    text = filter(is_valid, text)
+    text = ''.join(text)
 
     return text
 
