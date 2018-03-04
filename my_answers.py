@@ -6,12 +6,19 @@ from keras.layers import LSTM
 import keras
 
 
-# TODO: fill out the function below that transforms the input series 
+# DONE: fill out the function below that transforms the input series 
 # and window-size into a set of input/output pairs for use with our RNN model
 def window_transform_series(series, window_size):
     # containers for input/output pairs
     X = []
     y = []
+
+    count = len(series) - window_size
+
+    for x_idx in range(0, count):
+        y_idx = x_idx + window_size
+        X.append(series[x_idx:y_idx])
+        y.append(series[y_idx])
 
     # reshape each 
     X = np.asarray(X)
