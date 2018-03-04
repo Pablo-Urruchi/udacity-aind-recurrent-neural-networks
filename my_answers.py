@@ -51,11 +51,18 @@ def cleaned_text(text):
 
     return text
 
-### TODO: fill out the function below that transforms the input text and window-size into a set of input/output pairs for use with our RNN model
+### DONE: fill out the function below that transforms the input text and window-size into a set of input/output pairs for use with our RNN model
 def window_transform_text(text, window_size, step_size):
     # containers for input/output pairs
     inputs = []
     outputs = []
+
+    count = len(text) - window_size
+
+    for in_idx in range(0, count, step_size):
+        out_idx = in_idx + window_size
+        inputs.append(text[in_idx:out_idx])
+        outputs.append(text[out_idx])
 
     return inputs,outputs
 
